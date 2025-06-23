@@ -1,5 +1,6 @@
 package FlappyBridMain;
 
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -8,13 +9,14 @@ import javax.swing.*;
 
 public class Main extends JFrame {
     public Main() {
-        setTitle("Menu Personalizado");
+        setTitle("Flappy Bird");
         setSize(400, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridBagLayout());
+        JPanel panel = new FondoPanel();
+
         add(panel);
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -28,13 +30,10 @@ public class Main extends JFrame {
             new RunGameFlappyBird(); // Llama al juego
         });
 
-        JButton optionsButton = new JButton("Opciones");
-        optionsButton.addActionListener(e -> JOptionPane.showMessageDialog(this, "Opciones no implementadas"));
         JButton exitButton = new JButton("Salir");
         exitButton.addActionListener(e -> System.exit(0));
 
         panel.add(startButton, gbc);
-        panel.add(optionsButton, gbc);
         panel.add(exitButton, gbc);
              
         setVisible(true);
@@ -42,5 +41,20 @@ public class Main extends JFrame {
     
     public static void main(String[] args) {
         new Main();
+    }
+    
+    class FondoPanel extends JPanel {
+        private ImageIcon fondo;
+
+        public FondoPanel() {
+            fondo = new ImageIcon(getClass().getResource("/media/background.png"));
+            setLayout(new GridBagLayout());
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
+        }
     }
 }

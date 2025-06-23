@@ -37,7 +37,6 @@ public class RunGameFlappyBird extends JFrame{
 		panel = new JuegoPanel();
 		add(panel);//agrega el panel al JFrame
 		
-		
 		timer = new Timer(30, e -> gameLoop());
 		timer.start();
 		
