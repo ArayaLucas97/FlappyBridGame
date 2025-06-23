@@ -6,22 +6,24 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 public class Bird {
 	public int x, y, alto, ancho, speed;
-	public Image image;
+	public ImageIcon image;
 	public Bird() {
 		this.x = 20;
 		this.y = 150;
 		this.alto = 20;
 		this.ancho = 20;
 		this.speed = 2;
-		this.image = image;
+		this.image = new ImageIcon(getClass().getResource("/media/flappyBird.gif"));
 	}
 	//DIBUJO DEL OBJ
 	public void dibujar(Graphics g) {
 		int drawX = x;
 		if(image != null) {
-			//colocar variable donde busca la imagen (desk)
+			g.drawImage(image.getImage(), x, y, ancho, alto, null);
 		}else {
 			g.setColor(Color.MAGENTA);
 			g.fillRect(drawX, y, alto, ancho);
