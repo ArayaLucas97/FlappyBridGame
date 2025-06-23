@@ -32,7 +32,6 @@ public class RunGameFlappyBird extends JFrame{
 		setVisible(true);
 	}
 	void starGame() {
-		menuEndGame();
 		bird = new Bird();
 		panel = new JuegoPanel();
 		add(panel);//agrega el panel al JFrame
