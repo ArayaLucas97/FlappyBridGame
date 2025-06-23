@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import javax.swing.ImageIcon;
+
 public class Obstaculo {
 	private int x, y, alto, ancho, speed;
 	public Obstaculo(int x, int y,int alto, int ancho, int speed) {
@@ -14,8 +16,9 @@ public class Obstaculo {
 		this.speed = 2;
 	}
 	public void dibujar (Graphics g) {
-		g.setColor(Color.GRAY);
-		g.fillRect(x,y,alto,ancho);
+			g.setColor(Color.GREEN);
+			g.fillRect(x,y,alto,ancho);
+	
 	}	
 	public void actualizar() {
 		x = x - speed; 

@@ -14,6 +14,8 @@ public class RunGameFlappyBird extends JFrame{
 	private int contadorObstaculos;
 	private int intervaloObstaculo = 70;
 	private int score = 0;
+	private ImageIcon fondo = new ImageIcon(getClass().getResource("/media/background.png"));
+ 
 	public RunGameFlappyBird(){
 		//configuracion de la ventana
 		setTitle  ("FlappyBird");
@@ -43,7 +45,7 @@ public class RunGameFlappyBird extends JFrame{
 		generarObstaculo();
 	}
 	private void gameLoop() {
-		bird.actualizar();	
+		bird.actualizar();
 		score++;
 		
 	    for (int i = 0; i < obstaculos.size(); i++) {
@@ -130,8 +132,9 @@ public class RunGameFlappyBird extends JFrame{
 		int alturaSuperior = (int) (Math.random()*150)+50;
 		int alturaInferior = 500 - alturaSuperior - gap;
 		
-		obstaculos.add(new Obstaculo(400,0,50, alturaSuperior,2)); //tubo superior
-		obstaculos.add(new Obstaculo(400,500 - alturaInferior, 50, alturaInferior,2)); //tubo inferior	
+		obstaculos.add(new Obstaculo(400, 0, 50, alturaSuperior, 2));
+		obstaculos.add(new Obstaculo(400, 500 - alturaInferior, 50, alturaInferior, 2));
+	
 	}
 	
 	public void keyConfigure(){
@@ -163,10 +166,14 @@ public class RunGameFlappyBird extends JFrame{
 		@Override
         protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
+			// Dibujar fondo
+		    g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
+			//Dibujar Entidades
 			bird.dibujar(g);
 			for(Obstaculo obstaculo : obstaculos) {
 				obstaculo.dibujar(g);
 			}
+			//Puntaje
 			g.setColor(Color.BLACK);
 			g.drawString("Score: "+score,10,20);
 	
