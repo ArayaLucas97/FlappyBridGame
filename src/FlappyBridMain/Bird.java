@@ -59,5 +59,8 @@ public class Bird {
 	public boolean fueraPantalla2() {
 		return y+alto>0;
 	}
+	public int getY() {
+		return y;
+	}
 	
 }

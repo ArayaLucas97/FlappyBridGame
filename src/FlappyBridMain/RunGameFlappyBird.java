@@ -43,18 +43,24 @@ public class RunGameFlappyBird extends JFrame{
 		generarObstaculo();
 	}
 	private void gameLoop() {
-		bird.actualizar();
-		score++;
+		bird.actualizar();		
 		
-	    for (int i = 0; i < obstaculos.size(); i++) {
-	        Obstaculo obstaculo = obstaculos.get(i);
-	        obstaculo.actualizar();
-	        
-	        if (obstaculo.fueraDePantalla()) {
-	            obstaculos.remove(i);
-	            i--;
-	        }
-	    }	    
+		for (int i = 0; i < obstaculos.size(); i++) {
+		    Obstaculo obstaculo = obstaculos.get(i);
+		    obstaculo.actualizar();
+
+		    // Solo contar puntos para obstáculos inferiores (índices impares)
+		    if (!obstaculo.passed && i % 2 == 1 && bird.x > obstaculo.getX() + obstaculo.getAncho()) {
+		        score += 1;
+		        obstaculo.passed = true;
+		    }
+
+		    if (obstaculo.fueraDePantalla()) {
+		        obstaculos.remove(i);
+		        i--;
+		    }
+		}
+	    
 	    contadorObstaculos++;
 	    
 	    if(contadorObstaculos >= intervaloObstaculo) {
@@ -130,8 +136,8 @@ public class RunGameFlappyBird extends JFrame{
 		int alturaSuperior = (int) (Math.random()*150)+50;
 		int alturaInferior = 500 - alturaSuperior - gap;
 		
-		obstaculos.add(new Obstaculo(400, 0, 50, alturaSuperior, 2));
-		obstaculos.add(new Obstaculo(400, 500 - alturaInferior, 50, alturaInferior, 2));
+		obstaculos.add(new Obstaculo(400, 0, 50, alturaSuperior, 2,false));
+		obstaculos.add(new Obstaculo(400, 500 - alturaInferior, 50, alturaInferior, 2,false));
 	
 	}
 	
